@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kino Park - Gift Card</title>
+	<link rel="icon" type="image" href="christmas.jpg">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		body{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 10px 0;
+			background-color: #e55952;
+			padding-top: 20px;
+		}
+
+		.container{
+			width: 600px;
+			padding: 80px;
+			border: 1px solid #eeeeee;
+			border-radius: 14px;
+			box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+			background-color: #ffffff;
+			display: flex;
+			flex-direction: row;
+		}
+
+		.top{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		.top h1{
+			font-size: 40px;
+			margin-bottom: 60px;
+		}
+
+		.top h2{
+			font-size: 26px;
+			margin-bottom: 80px;
+		}
+
+		.top img{
+			width: 100%;
+			margin-bottom: 50px;
+			border-radius: 14px;
+		}
+
+		.middle{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.middle input{
+			width: 500px;
+			height: 52px;
+			font-size: 25px;
+			padding: 6px 16px;
+			box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+			border: 1px solid lightgrey;
+			border-radius: 8px;
+			margin-bottom: 50px;
+		}
+
+
+		.bottom{
+			display: flex;
+			flex-direction: column;
+		}
+
+
+		.bottom-div{
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+
+
+		.submit-btn{
+			padding: 17px 34px;
+			font-size: 24px;
+			background-color: #ff3632;
+			border: none;
+			color: #ffffff;
+			border-radius: 12px;
+			cursor: pointer;
+			text-decoration: none;
+			font-weight: bold;
+			box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+			margin-top: 40px;
+		}
+
+		.submit-btn:hover{
+			background-color: #ff0500;
+		}
+
+
+		@media (max-width: 1400px){
+			body{
+				padding: 60px 0px;
+			}
+
+			.container{
+				width: 75%;
+			}
+
+			.middle{
+				justify-content: center;
+				align-items: center;
+			}
+
+			.top img{
+				width: 100%;
+				margin-bottom: 90px;
+			}
+
+			.top{
+				margin-bottom: 100px;
+				text-align: center;
+			}
+
+			.top h1{
+				font-size: 66px;
+				margin-bottom: 75px;
+			}
+
+			.top h2{
+				font-size: 39px;
+			}
+
+			.middle input{
+				width: 695px;
+				height: 76px;
+				font-size: 38px;
+				padding: 10px 20px;
+				margin-bottom: 80px;
+			}
+
+			.bottom-div{
+				margin-top: 100px;
+			}
+
+			.submit-btn{
+				padding: 30px 42px;
+				font-size: 38px;
+				margin-bottom: 30px;
+			}
+
+		}	
+	</style>
+</head>
+<body>
+	<div class="container">
+		<form name="contactform">
+			<div class="top">
+				<img src="christmas.jpg">
+				<h1>Շնորհավոր Ամանոր, Պերճ</h1>
+				<h2>Նվեր քարտն ակտիվացնելու համար ներքևում լրացրու տվյալները</h2>
+			</div>
+			<div class="middle">
+					<div class="phone">
+						<input type="number" placeholder="Հեռախոսահամար" class="phone-value" name="phone" required>
+					</div>
+					<div class="email">
+						<input type="text" placeholder="E-mail" class="email-value" name="email" required>
+					</div>
+			</div>
+			<div class="bottom">
+				<div class="bottom-div">
+					<div class="submit">
+						<button class="submit-btn">Ուղարկել</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>	
+
+	<script type="text/javascript">
+		const submit_btn = document.querySelector(".submit-btn");
+		const scriptURL = "https://script.google.com/macros/s/AKfycbzZAXcIl0kyteXjHAfbmved6JTrbcgLWn19G7D6-IJ9odtnQKyiGQb9LK81oQn53ip2EA/exec"
+		const form = document.forms['contactform']	
+
+		form.addEventListener('submit', e => {
+			var phone_value = document.querySelector(".phone-value").value;
+			var email_value = document.querySelector(".email-value").value;
+
+			e.preventDefault()
+			fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+				.then(response => alert("Հաջողվեց: Շուտով դու կստանաս հաղորդագրություն հետևյալ էլ. հասցեին՝ " + email_value))
+				.catch(error => alert("Ինչ-որ բան այն չէ: Խնդրում ենք փորձել նորից:"))
+				    
+		});
+
+	</script>
+</body>
+</html>
